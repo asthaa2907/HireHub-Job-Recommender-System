@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">Find Your Dream Job</h1>
+    <p class="hero-subtitle">AI-powered recommendations tailored to your skills, experience, and interests.</p>
+
+    <form id="searchForm" action="{{ url_for('recommend') }}" method="get" class="search-form">
+      <input class="input" id="q" name="q" placeholder="Try: Data Scientist in Toronto" required />
+      <input class="input" name="location" placeholder="Location (optional)" />
+      <select class="input" name="experience">
+        <option value="">Any experience</option>
+        <option>Entry level</option>
+        <option>Associate</option>
+        <option>Mid-Senior level</option>
+        <option>Director</option>
+      </select>
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+  </div>
+</section>
+
+{% if results %}
+  <h2 class="section-title">Recommended Jobs</h2>
+  <div class="results-grid">
+    {% for r in results %}
+      <article class="job-card">
+        <h3 class="job-title">{{ r.title }}</h3>
+        <p class="job-meta"><strong>{{ r.companyName }}</strong> — {{ r.location }}</p>
+        {% if r.experienceLevel %}
+          <p class="job-meta small">Experience: {{ r.experienceLevel }}</p>
+        {% endif %}
+        <p class="job-desc">
+          {{ (r.description or '')[:180] }}
+          {% if r.description and r.description|length > 180 %}
+            … <a href="{{ r.jobUrl or '#' }}" target="_blank" class="link">more</a>
+          {% endif %}
+        </p>
+        <a class="btn btn-primary btn-apply" href="{{ r.jobUrl or '#' }}" target="_blank">Apply Now</a>
+      </article>
+    {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}

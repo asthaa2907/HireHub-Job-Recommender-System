@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-section">
+  <div class="container card">
+    <h1 class="section-title">Upload Your Resume</h1>
+
+    <form action="/upload_resume" method="POST" enctype="multipart/form-data" class="upload-form">
+      <input type="file" name="resume" accept=".pdf, .docx" required class="file-input">
+      <button type="submit" class="btn btn-primary">Get Job Recommendations</button>
+    </form>
+
+    {% if uploaded_filename %}
+    <p class="file-info">
+      📄 Uploaded File:
+      <a href="{{ file_url }}" target="_blank" class="link">{{ uploaded_filename }}</a>
+    </p>
+    {% endif %}
+
+    {% if skills %}
+    <div class="skills">
+      <h3>Extracted Skills</h3>
+      <p>{{ skills|join(', ') }}</p>
+    </div>
+    {% endif %}
+
+    {% if results %}
+    <h2 class="section-title align-left">Recommended Jobs</h2>
+    <div class="results-grid three-col">
+      {% for job in results %}
+      <article class="job-card">
+        <h3 class="job-title">{{ job.title }}</h3>
+        <p class="job-meta"><strong>{{ job.companyName }}</strong> — {{ job.location }}</p>
+
+        {% set words = (job.description or '').split() %}
+        {% if words|length > 30 %}
+          <p class="job-desc short-text">
+            {{ words[:30]|join(' ') }}...
+            <button type="button" class="link read-more" onclick="toggleDescription(this)">more</button>
+          </p>
+          <p class="job-desc full-text hidden">
+            {{ job.description }}
+            <button type="button" class="link read-more" onclick="toggleDescription(this)">less</button>
+          </p>
+        {% else %}
+          <p class="job-desc">{{ job.description }}</p>
+        {% endif %}
+
+        {% if job.jobUrl %}
+          <a href="{{ job.jobUrl }}" target="_blank" class="btn btn-primary btn-apply">View Job</a>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+    {% elif error %}
+      <p class="error-text">{{ error }}</p>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+  function toggleDescription(el) {
+    const card = el.closest('.job-card');
+    const shortText = card.querySelector('.short-text');
+    const fullText = card.querySelector('.full-text');
+    shortText.classList.toggle('hidden');
+    fullText.classList.toggle('hidden');
+  }
+</script>
+{% endblock %}

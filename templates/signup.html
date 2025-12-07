@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-section">
+  <div class="container card" style="max-width:600px;">
+    <h1 class="section-title">Create an account</h1>
+    <p style="color:var(--muted); text-align:center; margin-bottom:18px;">
+      Register to save jobs, upload resumes and access personalized recommendations.
+    </p>
+
+    <form action="{{ url_for('signup') }}" method="post" class="upload-form" style="flex-direction:column; gap:12px;">
+      <input name="username" class="input" placeholder="Full name" required />
+      <input name="email" type="email" class="input" placeholder="Email address" required />
+      <input name="password" type="password" class="input" placeholder="Password" required />
+      <div style="display:flex; gap:12px; justify-content:center; margin-top:8px;">
+        <button type="submit" class="btn btn-primary">Sign up</button>
+        <a href="{{ url_for('login') }}" class="btn btn-secondary" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Have an account? Login</a>
+      </div>
+    </form>
+
+  </div>
+</section>
+{% endblock %}

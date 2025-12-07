@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{{ title or "HireHUB" }}</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css') }}">
+</head>
+
+<body>
+  <!-- 🌟 Navbar -->
+  <header class="navbar">
+    <div class="brand">Hire<span class="brand-accent">HUB</span></div>
+    <nav class="site-nav">
+  <ul class="nav-list">
+    <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+    <li><a href="{{ url_for('upload_resume') }}" class="nav-link">Upload Resume</a></li>
+
+    {% if current_user.is_authenticated %}
+      <li><a href="{{ url_for('profile') }}" class="nav-link">Profile</a></li>
+      <li><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
+    {% else %}
+      <li><a href="{{ url_for('login') }}" class="nav-link">Login</a></li>
+      <li><a href="{{ url_for('signup') }}" class="nav-link">Sign Up</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+
+  </header>
+
+  <!-- 🌐 Page Content -->
+  <main class="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- 🎤 Mic Button (global) -->
+  <button id="mic-btn" class="mic-btn" title="Start voice input" onclick="initVoice()">
+    <img src="{{ url_for('static', filename='images/mic.png') }}" alt="Mic" id="mic-icon">
+  </button>
+
+  <!-- 💬 Chatbot -->
+  <button id="chatbot-toggle" class="chatbot-toggle">💬</button>
+  <div id="chatbot-window">
+  <div id="chatbot-header">
+    <span>HireHub Assistant</span>
+    <button id="chatbot-close">✖</button>
+  </div>
+  <div id="chatbot-messages"></div>
+  <div id="chatbot-input-area">
+    <input type="text" id="chatbot-input" placeholder="Type a message..." />
+    <button id="chatbot-send">➤</button>
+  </div>
+</div>
+
+
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/voice.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+</body>
+</html>

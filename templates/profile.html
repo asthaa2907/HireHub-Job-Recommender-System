@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" style="max-width:900px; margin:40px auto; padding:24px;">
+  <h1 style="color:#22d3ee;">Profile</h1>
+
+  <div style="background:#0f172a; padding:18px; border-radius:8px; margin-top:12px;">
+    <h2 style="color:#e2e8f0;">{{ user.username }}</h2>
+    <p style="color:#94a3b8;">Email: {{ user.email or '—' }}</p>
+
+    <h3 style="color:#22d3ee; margin-top:16px;">Resume</h3>
+    {% if resume_path %}
+      <p class="file-info">Uploaded resume:
+        <a href="{{ url_for('uploaded_file', filename=resume_path|basename) }}" target="_blank" style="color:#06b6d4;">
+          {{ resume_path|basename }}
+        </a>
+      </p>
+    {% else %}
+      <p class="file-info" style="color:#94a3b8;">No resume uploaded yet. Go to  <a href="{{ url_for('upload_resume') }}">Upload Resume</a>.</p>
+    {% endif %}
+
+    <h3 style="color:#22d3ee; margin-top:16px;">Saved Jobs</h3>
+    {% if saved_jobs %}
+      <ul>
+        {% for job in saved_jobs %}
+          <li style="color:#e2e8f0;">
+            <strong>{{ job.title }}</strong> — {{ job.companyName }} |
+            <a href="{{ job.jobUrl or '#' }}" target="_blank" style="color:#06b6d4;">View</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p style="color:#94a3b8;">You haven't saved any jobs yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
