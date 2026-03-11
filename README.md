@@ -1,4 +1,4 @@
-# 🚀 HireHub – Job Recommendation System using Hybrid Filtering  
+# HireHub – Job Recommendation System using Hybrid Filtering  
 
 HireHub is an AI-powered Job Recommendation System that recommends highly relevant jobs using **Hybrid Filtering**, combining **Content-Based Similarity (TF-IDF)** and **Popularity Scoring**.  
 It provides advanced features such as **Resume Parsing (PDF/DOCX)**, **Automatic Skill Extraction**, **Voice-Based Job Search**, and a **Chatbot Assistant** inside a modern UI.
