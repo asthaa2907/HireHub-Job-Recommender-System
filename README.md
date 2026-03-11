@@ -7,17 +7,17 @@ It provides advanced features such as **Resume Parsing (PDF/DOCX)**, **Automatic
 
 ## 🌟 Features
 
-- 🔍 **Smart Keyword-Based Job Search**  
-- 📄 **Resume Upload (PDF/DOCX)** with automatic text extraction  
-- 🧠 **Skill Extraction** from resume text  
-- 🎙 **Voice Search** for hands-free job queries  
-- 🤖 **Chatbot Assistant** for instant help  
-- ⭐ **Hybrid Recommendation Algorithm**  
+- **Smart Keyword-Based Job Search**  
+- **Resume Upload (PDF/DOCX)** with automatic text extraction  
+- **Skill Extraction** from resume text  
+- **Voice Search** for hands-free job queries  
+- **Chatbot Assistant** for instant help  
+- **Hybrid Recommendation Algorithm**  
   - 70% Textual Similarity (TF-IDF)  
   - 30% Job Popularity  
-- 👤 **Login & Signup System** (SQLite-based)  
-- 💾 **Save Jobs to User Profile**  
-- 🖥 **Dark-Themed Modern UI** inspired by professional job portals  
+- **Login & Signup System** (SQLite-based)  
+- **Save Jobs to User Profile**  
+- **Dark-Themed Modern UI** inspired by professional job portals  
 
 ---
 
@@ -35,23 +35,23 @@ https://www.kaggle.com/datasets/kanchana1990/linkedin-canada-data-science-jobs-2
 
 ## 🖼️ UI Preview 
 
-### 🏠 Home Page  
+### Home Page  
 ![Home UI](screenshots/home.png)
 
-### 📄 Resume Upload Page  
+### Resume Upload Page  
 ![Upload](screenshots/upload.png)
 
-### 🎯 Job Recommendations  
+### Job Recommendations  
 ![Recommendations](screenshots/recommendations.png)
 
-### 💬 Chatbot + Voice Search  
+### Chatbot + Voice Search  
 ![Chatbot](screenshots/chatbot.png)
 
-### 💬 Voice Search 
+### Voice Search 
 ![Chatbot](screenshots/voiceSearch.png)
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 ### **Backend**
 - Python (Flask)
@@ -72,26 +72,26 @@ https://www.kaggle.com/datasets/kanchana1990/linkedin-canada-data-science-jobs-2
 
 ---
 
-## 🚀 How It Works
+## How It Works
 
-### 🧩 1. Resume Parsing  
+###  1. Resume Parsing  
 Extracts text using PDFMiner / docx2txt → then extracts relevant skills.
 
-### 🧮 2. TF-IDF Vectorization  
+###  2. TF-IDF Vectorization  
 Creates a numerical representation of jobs and queries.
 
-### 🧠 3. Content-Based Similarity  
+###  3. Content-Based Similarity  
 Uses **Cosine Similarity** to match resume/query text to the job dataset.
 
-### ⭐ 4. Hybrid Scoring  
+###  4. Hybrid Scoring  
 Final ranking =  
 Hybrid Score = 0.7 * similarity + 0.3 * popularity
 
 
-### 🎙 5. Voice Input  
+###  5. Voice Input  
 Uses Web Speech API to let users search for jobs using voice commands.
 
-### 🤖 6. Chatbot  
+###  6. Chatbot  
 A guided chatbot to help users find jobs or understand platform features.
 
 ---
