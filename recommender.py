@@ -122,7 +122,8 @@ class Recommender:
                     'location': row.get('location', ''),
                     'experienceLevel': row.get('experienceLevel', ''),
                     'description': row.get('description', ''),
-                    'jobUrl': row.get('jobUrl', ''),
+                    #'jobUrl': row.get('jobUrl', ''),
+                    'jobUrl': row.get('jobUrl') if pd.notna(row.get('jobUrl')) else '#',
                     'matchScore': 0
                 })
 

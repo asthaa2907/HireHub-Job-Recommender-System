@@ -34,10 +34,18 @@
         <p class="job-desc">
           {{ (r.description or '')[:180] }}
           {% if r.description and r.description|length > 180 %}
-            … <a href="{{ r.jobUrl or '#' }}" target="_blank" class="link">more</a>
-          {% endif %}
+           <!-- … <a href="{{ r.jobUrl or '#' }}" target="_blank" class="link">more</a> -->
+            … <a href="{{ r.jobUrl }}" target="_blank" class="link">more</a>
+            {% endif %}
         </p>
-        <a class="btn btn-primary btn-apply" href="{{ r.jobUrl or '#' }}" target="_blank">Apply Now</a>
+
+        {% if r.jobUrl %}
+        <a class="btn btn-primary btn-apply" href="{{ r.jobUrl }}" target="_blank">Apply Now</a>
+        {% else %}
+         <span class="btn disabled">No Link</span>
+        {% endif %}
+      
+        
       </article>
     {% endfor %}
   </div>
