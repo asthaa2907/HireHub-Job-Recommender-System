@@ -3,6 +3,5 @@ __pycache__/
 uploads/
 *.pyc
 .env
-data/
 *.pdf
 *.pptx
